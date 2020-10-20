@@ -15,6 +15,17 @@ class MainWindow(QMainWindow):
         self.ui.agregar_inicio_pushButton.clicked.connect(self.click_agregar_inicio) #Decirle que cuando le de click se conecte a la función
         self.ui.agregar_final_pushButton.clicked.connect(self.click_agregar_final)
         self.ui.mostrar_pushButton.clicked.connect(self.mostrar) #Conectar el evento del boton a la función
+      
+    def limpiar(self):
+        self.ui.id_spinBox.setValue(0)
+        self.ui.origenx_spinBox.setValue(0)
+        self.ui.origeny_spinBox.setValue(0)
+        self.ui.destinox_spinBox.setValue(0)
+        self.ui.destinoy_spinBox.setValue(0)
+        self.ui.velocidad_spinBox.setValue(0)
+        self.ui.red_spinBox.setValue(0)
+        self.ui.green_spinBox.setValue(0)
+        self.ui.blue_spinBox.setValue(0)  
         
     def entrada_datos(self):
         id = self.ui.id_spinBox.value()
@@ -34,10 +45,12 @@ class MainWindow(QMainWindow):
     @Slot() #Decirle que la siguiente función detectara eventos click
     def click_agregar_inicio(self):
         self.particulas.agregar_inicio(self.entrada_datos())
+        self.limpiar()
         
     @Slot()
     def click_agregar_final(self):
         self.particulas.agregar_final(self.entrada_datos())
+        self.limpiar()
     
     @Slot()
     def mostrar(self):
